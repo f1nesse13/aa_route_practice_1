@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   def index
-    render json: Cat.all
+    render "index.html"
   end
 
   def show
@@ -40,6 +40,6 @@ class CatsController < ApplicationController
   private
 
   def cat_params
-    params.require(:cats).permit(:name, :age)
+    params.require(:cat).permit(:name, :age)
   end
 end

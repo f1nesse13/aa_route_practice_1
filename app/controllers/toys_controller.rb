@@ -1,6 +1,7 @@
-class Toy_Controller < ApplicationController
+class ToysController < ApplicationController
   def index
-    render json: Toy.all
+    cat = Cat.find(params[:cat_id])
+    render json: cat.toys
   end
 
   def show
@@ -37,6 +38,6 @@ class Toy_Controller < ApplicationController
   end
 
   def toy_params
-    params.require(:toy).permit(:name, :type)
+    params.require(:toy).permit(:name, :type, :cat_id)
   end
 end
