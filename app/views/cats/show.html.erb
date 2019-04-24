@@ -1,0 +1,13 @@
+<h1><%= @cat.name %></h1>
+<pre> <%= @cat.to_json %> </pre>
+<% if @cat.toys.length > 0 %>
+<h2>Toys</h2>
+
+<ul>
+  <% @cat.toys.each do |toy| %>
+    <li><%=toy.name%></li>
+  <% end %>
+</ul>
+<% end %>
+
+<a href="<%= cats_url %>">Back</a>
