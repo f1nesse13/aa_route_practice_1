@@ -1,11 +1,3 @@
 <h1>Update <%= @cat.name %> </h1>
-<form action="<%= cat_url(@cat) %>" method="POST">
-<input type="hidden" name="_method" value="PATCH">
-<label for="cat_name">Name</label>
-  <input type='text' placeholder="Cat's name" id="cat_name" name="cat[name]" value="<%= @cat.name %>">
-  <br>
-<label for="cat_age">Age</label>
-  <input type='text' placeholder="Cat's age" id="cat_age" name="cat[age]" value="<%= @cat.age %>">
-  <br>
-  <input type='submit' value='Update Cat'>
-</form>
+
+<%= render "form", cat: @cat %>

@@ -1,6 +1,3 @@
 <h1>Create a new cat</h1>
-<form action="/cats" method="POST">
-  <input type='text' placeholder="Cat's name" name="cat[name]" value="<%= @cat.name %>">
-  <input type='text' placeholder="Cat's age" name="cat[age]" value="<%= @cat.age %>">
-  <input type='submit' value='Create Cat!'>
-</form>
+
+<%= render "form", cat: @cat %>
