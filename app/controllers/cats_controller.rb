@@ -24,16 +24,17 @@ class CatsController < ApplicationController
   end
 
   def edit
-    # render :edit
+    @cat = Cat.find(params[:id])
+    render :edit
   end
 
   def update
     @cat = Cat.find_by({ id: params[:id] })
 
     if @cat.update(cat_params)
-      render :show
+      redirect_to cat_url(@cat)
     else
-      render json: cat.errors.full_message, status: :unprocessable_entity
+      render :edit
     end
   end
 
