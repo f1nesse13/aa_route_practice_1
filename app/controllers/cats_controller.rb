@@ -9,19 +9,28 @@ class CatsController < ApplicationController
     render :show
   end
 
+  def new
+    @cat = Cat.new
+    render :new
+  end
+
   def create
-    cat = Cat.new(cat_params)
-    if cat.save
-      render json: cat
+    @cat = Cat.new(cat_params)
+    if @cat.save
+      redirect_to cat_url(@cat)
     else
-      render json: cat.errors.full_message, status: :unprocessable_entity
+      render :new
     end
   end
 
-  def update
-    cat = Cat.find_by({ id: params[:id] })
+  def edit
+    # ...
+  end
 
-    if cat.update(cat_params)
+  def update
+    @cat = Cat.find_by({ id: params[:id] })
+
+    if @cat.update(cat_params)
       render json: cat
     else
       render json: cat.errors.full_message, status: :unprocessable_entity
@@ -32,7 +41,7 @@ class CatsController < ApplicationController
     cat = Cat.find_by({ id: params[:id] })
 
     if cat.destroy
-      render json: cat
+      redirect_to cats_url
     else
       render json: cat.errors.full_message, status: :unprocessable_entity
     end
