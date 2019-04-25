@@ -7,10 +7,12 @@
 <input type="text" name="toy[name]" id="cat_name" value="<%= @toy.name %>">
 <label for="toy_ttype">Type</label>
 <select name="toy[ttype]" id="toy_ttype">
-  <option value="string">String</option>
-  <option value="ball">Ball</option>
-  <option value="squeaker">Squeaker</option>
+  <% Toy::TYPES.each do |type| %>
+    <option value="<%= type %>"
+      <%= "selected" if @toy.ttype == type %>>
+      <%= type.titlecase %>
+    </option>
+  <% end %>
 </select>
-
 <input type="submit" value="Create Toy!">
 </form>
