@@ -1,0 +1,16 @@
+<h1> <%= @cat.name %>'s New Toy</h1>
+
+<form action="/toys" method="POST">
+<input type="hidden" name="toy[cat_id]" value="<%= @cat.id %>">
+
+<label for="cat_name">Name</label>
+<input type="text" name="toy[name]" id="cat_name" value="<%= @toy.name %>">
+<label for="toy_ttype">Type</label>
+<select name="toy[ttype]" id="toy_ttype">
+  <option value="string">String</option>
+  <option value="ball">Ball</option>
+  <option value="squeaker">Squeaker</option>
+</select>
+
+<input type="submit" value="Create Toy!">
+</form>

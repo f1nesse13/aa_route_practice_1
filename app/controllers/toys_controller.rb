@@ -8,17 +8,19 @@ class ToysController < ApplicationController
     render json: Toy.find(params[:id])
   end
 
-  def create
-    toy = Toy.new(
-      cat_id: params[:cat_id],
-      name: params[:name],
-      type: params[:type],
-    )
+  def new
+    @cat = Cat.find(params[:cat_id])
+    @toy = Toy.new
+    render :new
+  end
 
-    if toy.save
-      render json: toy
+  def create
+    @toy = Toy.new(toy_params)
+    @cat = @toy.cat
+    if @toy.save
+      redirect_to cat_url(@cat)
     else
-      render json: toy.errors.full_messages, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -38,6 +40,6 @@ class ToysController < ApplicationController
   end
 
   def toy_params
-    params.require(:toy).permit(:name, :type, :cat_id)
+    params.require(:toy).permit(:name, :ttype, :cat_id)
   end
 end
